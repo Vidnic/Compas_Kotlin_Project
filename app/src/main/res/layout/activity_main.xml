@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onNavigateClick"
+        android:text="navigate" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Compas will show you your path to what you need"
+        android:textSize="16sp" />
+
+    <!-- Контейнер для компаса и стрелки -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Циферблат компаса -->
+        <ImageView
+            android:id="@+id/compass"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pirate_compass"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Стрелка компаса (наложена ровно по центру циферблата) -->
+        <ImageView
+            android:id="@+id/compassArrow"
+
+            android:src="@drawable/compass_arrow"
+
+            android:scaleType="fitCenter"
+
+            android:layout_width="0dp"
+
+            android:layout_height="0dp"
+
+            app:layout_constraintWidth_percent="0.5"
+
+            app:layout_constraintHeight_percent="0.5"
+
+            app:layout_constraintHorizontal_bias="0.57"
+
+            app:layout_constraintLeft_toLeftOf="@id/compass"
+
+            app:layout_constraintRight_toRightOf="@id/compass"
+
+            app:layout_constraintTop_toTopOf="@id/compass"
+
+            app:layout_constraintBottom_toBottomOf="@id/compass"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
