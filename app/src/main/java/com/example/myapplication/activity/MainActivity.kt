@@ -2,7 +2,6 @@ package com.example.myapplication.activity
 
 import android.Manifest
 import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.content.pm.PackageManager
@@ -19,7 +18,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.service.NavigationBoundService
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -74,11 +72,10 @@ class MainActivity : AppCompatActivity() {
     private fun startAndBindService() {
         if (!isBound) {
             Intent(this, NavigationBoundService::class.java).also { intent ->
-                bindService(intent, connection, Context.BIND_AUTO_CREATE)
+                bindService(intent, connection, BIND_AUTO_CREATE)
             }
         }
     }
-
     private fun askLocationPermissions() {
         if (!checkLocationPermissions()) {
             val showRationale =
@@ -123,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 service.targetAngleFlow.collect { angle ->
                     binding.compassArrow.animate()
-                        .rotation(-angle)
+                        .rotation(angle)
                         .setDuration(60)
                         .start()
                     Log.d("CompassService", "onSensorChanged сработал! Значение: $angle")
